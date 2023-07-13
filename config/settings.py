@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'custom_admin',
     'rest_framework',
     'rest_framework_simplejwt',
+    "corsheaders",
     
 ]
 
@@ -63,6 +64,9 @@ SIMPLE_JWT = {
 
 
 MIDDLEWARE = [
+
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -160,3 +164,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 
+# CORS_ALLOW_ALL_ORIGINS = True only for development
+# DANGURES while production
+# for production use CORS_ALLOWED_ORIGINS implicitly isted of CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True

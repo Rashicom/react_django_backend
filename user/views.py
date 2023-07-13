@@ -130,11 +130,15 @@ class update_image(APIView):
 # home page
 class home(APIView):
     permission_classes = [IsAuthenticated]
-    
+    serializerclass = update_serializer
 
     def get(self, request, format=None):
+        print("autherized user")
+        user = User.objects.get(username=request.user)
+        print(user)
         
-        return Response({"details":"empty view"})
+        serialized_data = self.serializerclass(user)
+        return Response(serialized_data.data,status=200)
 
 
 
